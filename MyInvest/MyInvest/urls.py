@@ -16,12 +16,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from investApp import views
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('investApp.urls'))
+    path('api/', include('investApp.urls')),
+    path('', views.hmpage),
+    path('login/',views.lgpage,name="login"),
+    path('lg/', views.login,name="lg"),
 
 ]
-
 
 

@@ -1,0 +1,25 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Login</title>
+</head>
+<body class="bg-slate-600 text-center ">
+    <div class="bg-slate-200">
+        <h1 class="mt-5 font-bold text-lg text-center">Login Form</h1>
+        
+        <form action="{% url 'lg'%}" method="POST">
+            {% csrf_token %}
+            <label class="mt-5 font-bold" name="uname" id="uname">Username</lable>
+                <input class="border border-black mt-5" type="text" id="uname" name="uname">
+                <br>
+            <label class="mt-5 " name="password" id="password">Password</lable>
+                <input class="border border-black mt-5" type="password" required id="password" name="pwd"><br>
+            <button class="w-20 border border-black ml-10 mb-10 mt-5 bg-slate-500 rounded" name="login" id="login" type="submit" >Login</button>
+        </form>
+    </div>
+</body>
+</html>

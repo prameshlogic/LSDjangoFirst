@@ -5,3 +5,5 @@ class userModel(models.Model):
     name = models.CharField(max_length=100)
     desc = models.CharField(max_length=100)
 
+# class investModel(models.Model):
+    
