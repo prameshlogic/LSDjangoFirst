@@ -1,0 +1,32 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Signup</title>
+</head>
+<body class="bg-slate-600">
+    <div class="md-size:auto bg-slate-200 text-center ml-60 mr-40 rounded">
+        <h1 class=" mt-10 font-bold text-lg text-center">Signup Form</h1>
+        <form action="{% url 'sg'%}" method="POST">
+            {% csrf_token %}
+           
+            <label1 class="mt-5 font-bold" for="uname" id="uname">Username</lable1>
+                <input class="border border-black mt-5" type="text" id="uname" name="uname" maxlength="100" >
+                <br>
+            <label2 class="mt-5" name="mail" id="mail">Email</lable2>
+                <input class="border border-black mt-5" type="Email" required id="Email" name="mail"><br>
+            <label3 class="mt-5" name="password" id="password">Password:</lable3>
+                <input class="border border-black mt-5" type="password" required id="password" name="pwd" ><br>
+            <button class="w-20 border border-black ml-10 mb-10 mt-5 bg-slate-500 rounded" name="sign" id="sign" type="submit" >Signup</button>
+        </form>
+    {% if error %}
+        <p class="text-red-500">{{ error }}</p>
+    {% endif %}
+    </div>
+</body>
+</html>
+
+

@@ -24,9 +24,14 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('investApp.urls')),
-    path('', views.hmpage),
+    path('', views.hmpage,name="hmpage"),
     path('login/',views.lgpage,name="login"),
+    path('sg/',views.signup,name="sg"),
     path('lg/', views.login,name="lg"),
+    path('signup/', views.signpage,name="sign"),
+    path('profileEdit/<int:pk>/',views.profileEdit,name="profileEdit"),
+    path('profileCreate/', views.profileCreate,name="profileCreate"),
+    path('profileDelete/<int:pk>/', views.profileDelete,name="profileDelete"),
 
 ]
 
