@@ -1,3 +1,4 @@
+
 from django.db import models
 from django.contrib.auth.hashers import make_password, check_password
 
@@ -13,6 +14,7 @@ class sgModel(models.Model):
     uname = models.CharField(max_length=100)
     pwd = models.CharField(max_length=100)
     umail = models.EmailField(max_length=100)
+    img = models.ImageField(upload_to='images/',default='images/avatar.png')
 
     def set_password(self, raw_password):
         self.pwd = make_password(raw_password)

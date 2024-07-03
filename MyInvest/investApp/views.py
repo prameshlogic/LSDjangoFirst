@@ -5,6 +5,7 @@ from .models import userModel,sgModel
 from rest_framework import viewsets
 from .serializers import userSerializer
 from django.shortcuts import get_object_or_404
+from django.contrib.auth import logout
 # Create your views here.
 
 
@@ -52,6 +53,7 @@ def login(request): #login and lgpage can be merged using ifelse
         luname = request.POST.get('luname')
         lpwd = request.POST.get('lpwd')
 
+
         try:
             # Fetch the user from the sgModel
             user = sgModel.objects.get(uname=luname)
@@ -81,7 +83,7 @@ def profileCreate(request):
             return redirect('profileEdit', pk=user.pk)
         except IntegrityError:
             return render(request, 'profileEdit.html')
-
+        
     return render(request, 'profileEdit.html')
 
 
@@ -89,11 +91,10 @@ def profileDelete(request, pk):
     user = get_object_or_404(sgModel, pk=pk)
 
     if request.method == 'POST':
-        
-        
-        return redirect('hmpage')
+        user.delete()
+        return render(request, "login.html", {'user': user})
 
-    return render(request, "invest.html", {'user': user})
+    return render(request, "profileEdit.html", {'user': user})
 
 
 def profileEdit(request, pk):
@@ -103,7 +104,8 @@ def profileEdit(request, pk):
         uname = request.POST.get('uname')
         umail = request.POST.get('umail')
         pwd = request.POST.get('pwd')
-
+        img = request.FILES.get('img')
+         
         if not (uname and umail and pwd):
             messages.error(request, "All fields are required.")
             return render(request, 'profileEdit.html', {'user': user})
@@ -111,9 +113,21 @@ def profileEdit(request, pk):
         user.uname = uname
         user.umail = umail
         user.pwd = pwd
+        
+        if img:
+            user.img = img
+        
         user.save()
+        
+        
+        
+        
         return redirect('profileEdit', pk=user.pk)
 
     return render(request, "profileEdit.html", {'user': user})
 
+
+def userLogout(request):
+    logout(request)
+    return render(request, 'invest.html')
 
