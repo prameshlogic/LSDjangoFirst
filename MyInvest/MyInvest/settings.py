@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'investApp',
+    'compressor',
 ]
 
 MIDDLEWARE = [
@@ -86,6 +87,14 @@ DATABASES = {
         'PORT':'3306'
     }
 }
+
+# Configuing the compressor by Pramesh
+
+COMPRESS_ROOT = BASE_DIR / 'investApp/static'
+ 
+COMPRESS_ENABLED = True
+ 
+STATICFILES_FINDERS = ('compressor.finders.CompressorFinder',)
 
 
 # Password validation
