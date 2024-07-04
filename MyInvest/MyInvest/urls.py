@@ -29,10 +29,10 @@ urlpatterns = [
     path('sg/',views.signup,name="sg"),
     path('lg/', views.login,name="lg"),
     path('signup/', views.signpage,name="sign"),
-    path('profileEdit/<int:pk>/',views.profileEdit,name="profileEdit"),
+    path('profileEdit/<int:pk>',views.profileEdit,name="profileEdit"),
     path('profileCreate/', views.profileCreate,name="profileCreate"),
     path('profileDelete/<int:pk>/', views.profileDelete,name="profileDelete"),
-    path('logout/', views.userLogout,name="userLogout"),
+    path('pramesh', views.userLogout,name="userLogout"),
 
 ] + static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)
 
