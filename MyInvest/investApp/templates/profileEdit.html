@@ -8,13 +8,13 @@
     {% comment %} <script src="https://cdn.tailwindcss.com"></script> {% endcomment %}
     {% comment %} <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> {% endcomment %}
     <link rel="stylesheet" href="{% static 'src/output.css' %}">
-    <title>MyInvest App</title>
+    <title>InvestApp</title>
 </head>
 <body class="bg-slate-900">
     <div class="bg-black text-black p-4 flex justify-between items-center">
-        <div class="font-bold text-white text-left">Ansu Invest</div>
+        <div class="font-bold text-white text-left">InvestApp</div>
         <nav class="flex gap-5 mr-16 mt-.5 ">
-            <a href="#" class="text-white text-sm text-right">Home</a>
+            <a href="{%url 'hmpage'%}" class="text-white text-sm text-right">Home</a>
             <a href="#" class="text-white text-sm text-right">Company</a>
             <a href="#" class="text-white text-sm text-right">Research</a>
             <a href="#" class="text-white text-sm text-right">Valuation</a>
