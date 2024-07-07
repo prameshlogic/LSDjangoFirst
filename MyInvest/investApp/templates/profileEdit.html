@@ -1,4 +1,4 @@
-{% load static %}
+{% comment %} {% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% comment %} <script src="https://cdn.tailwindcss.com"></script> {% endcomment %}
-    {% comment %} <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> {% endcomment %}
+    {% comment %} <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> 
     <link rel="stylesheet" href="{% static 'src/output.css' %}">
     <title>InvestApp</title>
 </head>
@@ -25,36 +25,36 @@
         </nav>
     </div>
     <div class="h-full">
-        <div class="border-b-2 block md:flex">
-            <div class="w-full md:w-2/5 p-4 sm:p-6 lg:p-8 bg-white shadow-md">
+        <div class="border-b-2 block md:flex ">
+            <div class="w-full md:w-2/5 p-4 sm:p-6 lg:p-8 bg-white shadow-md ">
                 <div class="flex justify-between">
                     <span class="text-xl font-semibold block">Profile</span>
                 </div>
                 {%if user.img%}
-                    <div class="w-full p-8 mx-2 flex justify-center">
-                        <img id="showImage" class="w-50 items-center border" src="{{user.img.url}}" alt="Default Image">
+                    <div class="w-full p-8 mx-2 flex justify-center ">
+                        <img id="showImage" class="rounded-full h-80 w-80 items-center border" src="{{user.img.url}}" alt="Default Image">
                     </div>
                 {%else%}
                 <div class="w-full p-8 mx-2 flex justify-center">
-                    <img id="showImage" class="w-50 items-center border" src="{%static "image/avatar.png" %}" alt="NO Image">
+                    <img id="showImage" class="rounded-full h-80 w-80 items-center border" src="{%static "image/avatar.png" %}" alt="NO Image">
                 </div>
                 {%endif%}
 
             </div>
-            <div class="w-full md:w-3/5 p-8 bg-white lg:ml-4 shadow-md">
-                <div class="rounded shadow p-6">
+            <div class="w-full md:w-3/5 p-8 bg-white lg:ml-4 shadow-md ">
+                <div class="rounded shadow p-6 w-300 h-200 p-15 border-solid-10 box-content inline-block">
                     <form action="{% url 'profileEdit' user.pk %}" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="pb-6">
                             <label for="name" class="font-semibold text-gray-700 block pb-1">Name</label>
                             <div class="flex">
-                                <input id="username" name="uname" class="border-1 rounded-r px-4 py-2 w-full" type="text" value="{{ user.uname }}" />
+                                <input id="username" name="uname" class="border-1 rounded-r px-4 py-2 w-full " type="text" value="{{ user.uname }}" />
                             </div>
                         </div>
                         <div class="pb-6">
                             <label for="password" class="font-semibold text-gray-700 block pb-1">Password</label>
                             <div class="flex">
-                                <input id="password" name="pwd" class="border-1 rounded-r px-4 py-2 w-full" type="text" value="{{ user.pwd }}" />
+                                <input id="password" name="pwd" class="border-1 rounded-r px-4 py-2 w-full " type="text" value="{{ user.pwd }}" />
                             </div>
                         </div>
                         <div class="pb-4">
@@ -62,7 +62,7 @@
                             <input id="email" name="umail" class="border-1 rounded-r px-4 py-2 w-full" type="email" value="{{ user.umail }}" />
                             <span class="text-gray-600 pt-4 block opacity-70">P</span>
                         </div>
-                        <div class="w-full p-8 mx-2 flex justify-center">
+                        <div class="w-full p-8 mr-10 flex justify-right">
                             <input type="file" required name="img" class="form-control">                     
                         </div>
 
@@ -76,5 +76,97 @@
             </div>
         </div>
     </div>
+</body>
+</html> {% endcomment %}
+
+
+
+
+
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'src/output.css' %}">
+    <title>InvestApp</title>
+    <script>
+        function flip(){
+            var ab = document.getElementById("editdiv");
+            if (ab.style.display === "none"){
+                ab.style.display = "inline-block";
+            }
+            else{
+                ab.style.display = "none";
+            }
+
+
+        }
+    </script>
+</head>
+<body class="bg-slate-900 min-h-screen flex flex-col justify-center items-center">
+    <!-- Navbar -->
+    <div class="fixed top-0 bg-black text-black p-4 w-full flex justify-between items-center">
+        <div class="font-bold text-white text-left">InvestApp</div>
+        <nav class=" flex gap-5 mr-16 mt-0.5">
+            <a href="{%url 'hmpage'%}" class="text-white text-sm">Home</a>
+            <a href="#" class="text-white text-sm">Company</a>
+            <a href="#" class="text-white text-sm">Research</a>
+            <a href="#" class="text-white text-sm">Valuation</a>
+            <a href="#" class="text-white text-sm">Financial</a>
+            <a href="#" class="text-white text-sm">Markets</a>
+            <a href="#" class="text-white text-sm">Marketpedia</a>
+            <a href="{% url 'userLogout' %}" class="border border-white py-1 px-2 rounded text-white text-sm">Log Out</a>
+        </nav>
+    </div>
+
+    <!-- Profile Card -->
+    <div class="mt-20 justify-center items-center bg-white rounded-lg shadow-lg overflow-hidden w-96">
+        <div class="bg-blue-300 h-30 text-center">
+            {% if user.img %}
+                <img class="w-24 h-24 rounded-full mx-auto border-4 border-white" src="{{ user.img.url }}" alt="User Image">
+            {% else %}
+                <img class="w-24 h-24 rounded-full mx-auto border-4 border-white" src="{% static 'image/avatar.png' %}" alt="Default Image">
+            {% endif %}
+        </div>
+        <div class="p-6 text-center">
+            <h2 class="text-2xl font-semibold text-gray-800">{{ user.uname }}</h2>
+            <div class="mt-4 space-y-2 text-left">
+                <p class="text-gray-700"><strong>Name:</strong> {{ user.uname}}</p>
+                <p class="text-gray-700"><strong>Email:</strong> {{ user.umail }}</p>
+            </div>
+            <div class="mt-10">
+                <button onClick = "flip()" type="submit" class="w-full bg-blue-900 text-white p-2 rounded font-bold">Edit</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Profile Form -->
+    <div id="editdiv" class="bg-white rounded-lg shadow-lg p-6 w-96 mt-10" style="display:none;">
+        <form action="{% url 'profileEdit' user.pk %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-4">
+                <label for="uname" class="block text-gray-700 font-bold mb-2">Name</label>
+                <input id="uname" name="uname" type="text" value="{{ user.uname }}" class="w-full border border-gray-300 p-2 rounded">
+            </div>
+            <div class="mb-4">
+                <label for="umail" class="block text-gray-700 font-bold mb-2">Email</label>
+                <input id="umail" name="umail" type="email" value="{{ user.umail }}" class="w-full border border-gray-300 p-2 rounded">
+            </div>
+            <div class="mb-4">
+                <label for="img" class="block text-gray-700 font-bold mb-2">Profile Picture</label>
+                <input id="img" name="img" type="file" class="w-full border border-gray-300 p-2 rounded">
+            </div>
+            <button type="submit" class="w-full bg-green-500 text-white p-2 rounded font-bold">Save</button>
+        </form>
+        <form action="{% url 'profileDelete' user.pk %}" method="post" class="mt-4">
+            {% csrf_token %}
+            <button type="submit" class="w-full bg-red-500 text-white p-2 rounded font-bold">Delete</button>
+        </form>
+    </div>
+
 </body>
 </html>

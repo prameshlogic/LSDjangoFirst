@@ -103,24 +103,22 @@ def profileEdit(request, pk):
     if request.method == 'POST':
         uname = request.POST.get('uname')
         umail = request.POST.get('umail')
-        pwd = request.POST.get('pwd')
+        # pwd = request.POST.get('pwd')
         img = request.FILES.get('img')
+        
          
-        if not (uname and umail and pwd):
+        if not (uname and umail):
             messages.error(request, "All fields are required.")
             return render(request, 'profileEdit.html', {'user': user})
 
         user.uname = uname
         user.umail = umail
-        user.pwd = pwd
+        # user.pwd = pwd
         
         if img:
             user.img = img
         
         user.save()
-        
-        
-        
         
         return redirect('profileEdit', pk=user.pk)
 
