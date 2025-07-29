@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyInvest Home</title>
+    <link rel="stylesheet" href="/MyInvest/investApp/static/src/output.css">
+</head>
+<script>
+    function toggle(){
+        var ab = document.getElementById("abc");
+        if (ab.style.background === "white"){
+            ab.style.background = "black";
+        }
+        else{
+            ab.style.background = "white";
+        }
+
+
+    }
+</script>
+<body class="bg-red-300">
+    <div id="abc" class = "bg-white">
+        hello
+    </div>
+    <button onClick="toggle()" type="submit" class="button hover:bg-blue-400">Submit</button>
+</body>
+</html>
